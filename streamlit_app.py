@@ -18,6 +18,8 @@ import yfinance as yf
 import pandas as pd
 import altair as alt
 
+from bist_stocks import get_bist_tickers
+
 st.set_page_config(
     page_title="Stock peer analysis dashboard",
     page_icon=":chart_with_upwards_trend:",
@@ -132,6 +134,9 @@ STOCKS = [
     "WMT",
     "XOM",
 ]
+
+# Merge US and BIST stocks alphabetically
+STOCKS = sorted(set(STOCKS + get_bist_tickers()))
 
 DEFAULT_STOCKS = ["AAPL", "MSFT", "GOOGL", "NVDA", "AMZN", "TSLA", "META"]
 
@@ -318,7 +323,7 @@ for i, ticker in enumerate(tickers):
             ),
             alt.Tooltip(["Date", "Series", "Price"]),
         )
-        .properties(title=f"{ticker} vs peer average", height=300)
+        .properties(title=f"{width="stretch", height=300)
     )
 
     cell = cols[(i * 2) % NUM_COLS].container(border=True)
@@ -340,7 +345,7 @@ for i, ticker in enumerate(tickers):
             alt.X("Date:T"),
             alt.Y("Delta:Q").scale(zero=False),
         )
-        .properties(title=f"{ticker} minus peer average", height=300)
+        .properties(title=f"{width="stretch"ge", height=300)
     )
 
     cell = cols[(i * 2 + 1) % NUM_COLS].container(border=True)
