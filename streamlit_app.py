@@ -323,7 +323,7 @@ for i, ticker in enumerate(tickers):
             ),
             alt.Tooltip(["Date", "Series", "Price"]),
         )
-        .properties(title=f"{width="stretch", height=300)
+        .properties(title=f"{ticker} vs peer average", height=300)
     )
 
     cell = cols[(i * 2) % NUM_COLS].container(border=True)
@@ -345,7 +345,7 @@ for i, ticker in enumerate(tickers):
             alt.X("Date:T"),
             alt.Y("Delta:Q").scale(zero=False),
         )
-        .properties(title=f"{width="stretch"ge", height=300)
+        .properties(title=f"{ticker} minus peer average", height=300)
     )
 
     cell = cols[(i * 2 + 1) % NUM_COLS].container(border=True)
